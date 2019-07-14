@@ -19,7 +19,7 @@ public class UserController {
 
     @GetMapping
     public String main(Map<String, Object> model) {
-        model.put("mainTest" , "Start page");
+        model.put("mainTest" , "Start page TEST");
         return "main";
     }
 }
