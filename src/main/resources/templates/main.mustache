@@ -1,6 +1,13 @@
 
 <HTML>
     <body>
-        <div>main {{mainTest}}</div>
+        <div>Service</div>
+        {{#services}}
+        <div>
+            <b>{{id}}</b>
+            <span>{{service}}</span>
+            <i>{{kratnost}}</i>
+        </div>
+        {{/services}}
     </body>
 </HTML>
