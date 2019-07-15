@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Iterator;
@@ -25,6 +26,18 @@ public class UserController {
 
     @GetMapping
     public String main(Map<String, Object> model) {
+        Iterable<Service> services = serviceRepository.findAll();
+        model.put("services" , services);
+
+        return "main";
+    }
+
+    @PostMapping
+    public  String add(@RequestParam String service, @RequestParam Integer kratnost, Map<String, Object> model) {
+        Service serviceDomain = new Service(service, kratnost);
+
+        serviceRepository.save(serviceDomain);
+
         Iterable<Service> services = serviceRepository.findAll();
         model.put("services" , services);
 

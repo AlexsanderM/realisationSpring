@@ -15,6 +15,11 @@ public class Service {
 
     public Service() {}
 
+    public Service(String service, Integer kratnost) {
+        this.service = service;
+        this.kratnost = kratnost;
+    }
+
     public Integer getId() {
         return id;
     }
