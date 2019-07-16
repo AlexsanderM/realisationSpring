@@ -18,14 +18,13 @@ public class UserController {
     @Autowired
     private ServiceRepository serviceRepository;
 
-    @GetMapping("/user")
-    public String user(@RequestParam(name = "name", required = false, defaultValue = "New User") String name,
-                       Map<String, Object> model) {
-        model.put("name" , name);
+    @GetMapping("/")
+    public String user(Map<String, Object> model) {
+
         return "user";
     }
 
-    @GetMapping
+    @GetMapping("/main")
     public String main(Map<String, Object> model) {
         Iterable<Service> services = serviceRepository.findAll();
         model.put("services" , services);
@@ -33,10 +32,9 @@ public class UserController {
         return "main";
     }
 
-    @PostMapping
+    @PostMapping("/main")
     public String add(@RequestParam String service, @RequestParam Integer kratnost, Map<String, Object> model) {
         Service serviceDomain = new Service(service, kratnost);
-
         serviceRepository.save(serviceDomain);
 
         Iterable<Service> services = serviceRepository.findAll();
