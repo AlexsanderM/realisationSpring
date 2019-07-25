@@ -1,4 +1,4 @@
-package com.malov;
+package com.malov.controller;
 
 import com.malov.domain.Service;
 import com.malov.repo.ServiceRepository;
@@ -14,14 +14,13 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class UserController {
+public class MainController {
     @Autowired
     private ServiceRepository serviceRepository;
 
     @GetMapping("/")
     public String user(Map<String, Object> model) {
-
-        return "user";
+        return "greeting";
     }
 
     @GetMapping("/main")
