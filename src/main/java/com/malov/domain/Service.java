@@ -1,24 +1,29 @@
 package com.malov.domain;
 
-import javax.persistence.Id;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+import javax.persistence.*;
 
 @Entity
 public class Service {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
     private String service;
     private Integer kratnost;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id" )
+    private User author;
+
     public Service() {}
 
-    public Service(String service, Integer kratnost) {
+    public Service(String service, Integer kratnost, User user) {
         this.service = service;
         this.kratnost = kratnost;
+        this.author = user;
+    }
+
+    public String getAuthorName() {
+        return author != null ? author.getUsername() : "null";
     }
 
     public Long getId() {
@@ -43,5 +48,13 @@ public class Service {
 
     public void setKratnost(Integer kratnost) {
         this.kratnost = kratnost;
+    }
+
+    public User getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(User author) {
+        this.author = author;
     }
 }
